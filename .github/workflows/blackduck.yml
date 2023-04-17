@@ -40,9 +40,9 @@ jobs:
           # The Synopsys Bridge software distribution is platform specific - this must match the host OS
           # of your runner. For example in this case, we are using the latest version for Linux.
           #bridge_download_url: ${{ env.LINUX_BRIDGE_URL }}
-        env:
-          DETECT_PROJECT_NAME: ${{ vars.BLACKDUCK_PROJECT }}
-          DETECT_PROJECT_VERSION_NAME: demo-dev
-          BLACKDUCK_TRUST_CERT: true
+        #env:
+          #DETECT_PROJECT_NAME: ${{ vars.BLACKDUCK_PROJECT }}
+          #DETECT_PROJECT_VERSION_NAME: demo-dev
+          #BLACKDUCK_TRUST_CERT: true
           #DETECT_WAIT_FOR_RESULTS: ${{ vars.DETECT_WAIT_FOR_RESULTS }}
           #DETECT_BLACKDUCK_RAPID_COMPARE_MODE: BOM_COMPARE_STRICT
