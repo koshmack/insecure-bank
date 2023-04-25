@@ -16,19 +16,14 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Synopsys Action
+      - name: Synopsys Action Black Duck
         uses: synopsys-sig/synopsys-action@main
         with:
+          GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
+ 
           blackduck_apiToken: ${{ secrets.BLACKDUCK_API_TOKEN }}
           blackduck_url: ${{ secrets.BLACKDUCK_URL }}
-          # Required parameter if blackduck_automation_fixpr is enabled
-          # Make sure GITHUB_TOKEN have appropriate permissions
-          GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
-          # Optional parameter. By default, pushes will initiate a full "intelligent" scan and pull requests
-          # will initiate a rapid scan.
           blackduck_scan_full: false
-          # Optional parameter. By default, create fix pull requests if vulnerabilities are reported
-          # Passing false will disable fix pull request creation 
           blackduck_automation_fixpr: false
           # Optional parameter. The values could be. ALL|NONE|BLOCKER|CRITICAL|MAJOR|MINOR|OK|TRIVIAL|UNSPECIFIED
           # Single parameter
@@ -41,8 +36,24 @@ jobs:
           # of your runner. For example in this case, we are using the latest version for Linux.
           #bridge_download_url: ${{ env.LINUX_BRIDGE_URL }}
         env:
-          #DETECT_PROJECT_NAME: ${{ vars.BLACKDUCK_PROJECT }}
-          #DETECT_PROJECT_VERSION_NAME: demo-dev
+          DETECT_PROJECT_NAME: ${{ vars.BLACKDUCK_PROJECT }}
+          DETECT_PROJECT_VERSION_NAME: demo-dev
           BLACKDUCK_TRUST_CERT: true
-          #DETECT_WAIT_FOR_RESULTS: ${{ vars.DETECT_WAIT_FOR_RESULTS }}
           #DETECT_BLACKDUCK_RAPID_COMPARE_MODE: BOM_COMPARE_STRICT
+      - name: Synopsys Action Polaris
+        uses: synopsys-sig/synopsys-action@main
+        with:
+          GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
+
+          polaris_serverUrl: ${{ secrets.POLARIS_SERVER_URL }}
+          polaris_accessToken: ${{ secrets.POLARIS_ACCESS_TOKEN }}
+          polaris_application_name: ${{ vars.POLARIS_APPLICATION_NAME }}
+          polaris_project_name: ${{ vars.POLARIS_PROJECT_NAME }}
+          polaris_assessment_types: ${{ vars.POLARIS_ASSESSMENT_TYPES }}
+          # Waiting for automation
+          #polaris_automation_fixpr: false
+          #polaris_automation_prcomment: true
+          # Optional parameter, but usually specified - the location of the Synopsys Bridge software
+          # The Synopsys Bridge software distribution is platform specific - this must match the host OS
+          # of your runner. For example in this case, we are using the latest version for Linux.
+          #bridge_download_url: ${{ env.LINUX_BRIDGE_URL }}
