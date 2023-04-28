@@ -12,14 +12,20 @@ on:
 
 jobs:
   build:
-    runs-on: [self-hosted]
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+      - name: Setup Java JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: 11
+          distribution: microsoft
+          cache: maven
       - name: Synopsys Action Black Duck
         uses: synopsys-sig/synopsys-action@main
         with:
-          GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
  
           blackduck_apiToken: ${{ secrets.BLACKDUCK_API_TOKEN }}
           blackduck_url: ${{ secrets.BLACKDUCK_URL }}
@@ -37,13 +43,13 @@ jobs:
           #bridge_download_url: ${{ env.LINUX_BRIDGE_URL }}
         env:
           DETECT_PROJECT_NAME: ${{ vars.BLACKDUCK_PROJECT }}
-          DETECT_PROJECT_VERSION_NAME: demo-dev
+          #DETECT_PROJECT_VERSION_NAME: demo-dev
           BLACKDUCK_TRUST_CERT: true
           #DETECT_BLACKDUCK_RAPID_COMPARE_MODE: BOM_COMPARE_STRICT
       - name: Synopsys Action Polaris
         uses: synopsys-sig/synopsys-action@main
         with:
-          GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
 
           polaris_serverUrl: ${{ secrets.POLARIS_SERVER_URL }}
           polaris_accessToken: ${{ secrets.POLARIS_ACCESS_TOKEN }}
