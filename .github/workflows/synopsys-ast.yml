@@ -49,11 +49,7 @@ jobs:
       - name: Synopsys Action Polaris
         uses: synopsys-sig/synopsys-action@main
         with:
-<<<<<<< HEAD
           github_token: ${{ secrets.GITHUB_TOKEN }}
-=======
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
->>>>>>> 02a3c0198f855a69c135e582af05ad9be7899a82
 
           polaris_serverUrl: ${{ secrets.POLARIS_SERVER_URL }}
           polaris_accessToken: ${{ secrets.POLARIS_ACCESS_TOKEN }}
