@@ -43,7 +43,7 @@ jobs:
           #bridge_download_url: ${{ env.LINUX_BRIDGE_URL }}
         env:
           DETECT_PROJECT_NAME: ${{ vars.BLACKDUCK_PROJECT }}
-          DETECT_PROJECT_VERSION_NAME: ${{ vars.BLACKDUCK_PROJECT }}-${{ ${{ github.ref_name }}
+          DETECT_PROJECT_VERSION_NAME: ${{ vars.BLACKDUCK_PROJECT }}-${{ github.ref_name }}
           BLACKDUCK_TRUST_CERT: true
           DETECT_BLACKDUCK_RAPID_COMPARE_MODE: ALL
       - name: Synopsys Action Polaris
