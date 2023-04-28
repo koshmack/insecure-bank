@@ -23,7 +23,7 @@ jobs:
           distribution: microsoft
           cache: maven
       - name: Synopsys Action Black Duck
-        uses: synopsys-sig/synopsys-action@main
+        uses: synopsys-sig/synopsys-action@v1.2.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
  
@@ -47,7 +47,7 @@ jobs:
           BLACKDUCK_TRUST_CERT: true
           DETECT_BLACKDUCK_RAPID_COMPARE_MODE: "ALL"
       - name: Synopsys Action Polaris
-        uses: synopsys-sig/synopsys-action@main
+        uses: synopsys-sig/synopsys-action@v1.2.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
