@@ -29,7 +29,7 @@ jobs:
  
           blackduck_apiToken: ${{ secrets.BLACKDUCK_API_TOKEN }}
           blackduck_url: ${{ secrets.BLACKDUCK_URL }}
-          blackduck_scan_full: false
+          blackduck_scan_full: true
           blackduck_automation_fixpr: false
           # Optional parameter. The values could be. ALL|NONE|BLOCKER|CRITICAL|MAJOR|MINOR|OK|TRIVIAL|UNSPECIFIED
           # Single parameter
@@ -43,9 +43,9 @@ jobs:
           #bridge_download_url: ${{ env.LINUX_BRIDGE_URL }}
         env:
           DETECT_PROJECT_NAME: ${{ vars.BLACKDUCK_PROJECT }}
-          DETECT_PROJECT_VERSION_NAME: ${{ vars.BLACKDUCK_PROJECT }}-${{ github.ref_name }}
+          DETECT_PROJECT_VERSION_NAME: "demo-dev"
           BLACKDUCK_TRUST_CERT: true
-          DETECT_BLACKDUCK_RAPID_COMPARE_MODE: "ALL"
+          #DETECT_BLACKDUCK_RAPID_COMPARE_MODE: "ALL"
       - name: Synopsys Action Polaris
         uses: synopsys-sig/synopsys-action@v1.2.0
         with:
